@@ -20,7 +20,7 @@ public struct SGBackendServerClient {
     }
     
     @available(macOS 12.0, *)
-    func fetchData(endPoint: String) async throws -> String {
+    public func fetchData(endPoint: String) async throws -> String {
         let url = self.baseUrl.appendingPathComponent(endPoint)
         let (data, _) = try await URLSession.shared.data(for: URLRequest(url: url))
         guard let responseBody = String(data: data, encoding: .utf8) else {
