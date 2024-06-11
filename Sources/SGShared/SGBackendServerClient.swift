@@ -16,7 +16,7 @@ public struct SGBackendServerClient {
     public init(clientUrl: String = "http://127.0.0.1", clientPort: String = "8080") {
         self.clientPort = clientPort
         self.clientUrl = clientUrl
-        self.baseUrl = URL(string: "")!
+        self.baseUrl = URL(string: "\(self.clientUrl):\(self.clientPort)")!
     }
     
     @available(macOS 12.0, *)
