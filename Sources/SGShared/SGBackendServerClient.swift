@@ -28,9 +28,9 @@ public struct SGBackendServerClient {
                 throw Errors.invalidResponseEncoding
             }
             return responseBody
-        } catch  {
+        } catch {
             print("Could not retrieve data from server")
-            throw error
+            return error.localizedDescription
         }
         
     }
