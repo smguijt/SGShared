@@ -1,6 +1,6 @@
 //
-//  SGBackendServerClient.swift
-//
+//  File.swift
+//  
 //
 //  Created by Sietse Guijt on 11/06/2024.
 //
@@ -9,8 +9,8 @@ import Foundation
 
 public struct SGBackendServerClient {
     
-    public private(set) var clientPort: String
-    public private(set) var clientUrl: String
+    public var clientPort: String
+    public var clientUrl: String
     public private(set) var baseUrl: URL
     
     public init(clientUrl: String = "http://127.0.0.1", clientPort: String = "8080") {
