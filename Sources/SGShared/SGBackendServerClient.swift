@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FoundationNetworking
 
 public struct SGBackendServerClient {
     
@@ -19,23 +20,23 @@ public struct SGBackendServerClient {
         self.baseUrl = URL(string: "\(self.clientUrl):\(self.clientPort)")!
     }
     
-    @available(macOS 12.0, *)
+    //@available(macOS 12.0, *)
     public func fetchData(endPoint: String) async throws -> String {
         let url = self.baseUrl.appendingPathComponent(endPoint)
-        do {
-            let (data, _) = try await URLSession.shared.data(for: URLRequest(url: url))
-            guard let responseBody = String(data: data, encoding: .utf8) else {
-                throw Errors.invalidResponseEncoding
-            }
-            return responseBody
-        } catch {
-            print("Could not retrieve data from server")
-            return error.localizedDescription
-        }
-        
+        return createHttpGetRequest(url: url.absoluteString)
     }
 
     enum Errors: Error {
         case invalidResponseEncoding
+    }
+
+    private func createHttpGetRequest(url: String) -> String {
+        let url = URL(string: url)!
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        // Add any additional headers or parameters if needed
+        // ...
+        let requestBody = String(data: request.httpBody ?? Data(), encoding: .utf8) ?? ""
+        return requestBody
     }
 }
