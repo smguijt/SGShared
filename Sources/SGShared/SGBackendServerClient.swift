@@ -6,7 +6,11 @@
 //
 
 import Foundation
-//import FoundationNetworking
+
+// network component have been moved to different package. This package however is not available on MacOS so add only if possible
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 public struct SGBackendServerClient {
     
