@@ -6,19 +6,21 @@ import PackageDescription
 let package = Package(
     name: "SGShared",
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "SGShared",
             targets: ["SGShared"]),
     ],
+    dependencies: [
+        .package(url: "https://github.com/CoreOffice/CoreXLSX.git", .upToNextMinor(from: "0.14.2"))
+    ],
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "SGShared",
-            dependencies: []),
+            dependencies: [
+                .product(name: "CoreXLSX", package: "CoreXLSX")
+            ]),
         .testTarget(
             name: "SGSharedTests",
-            dependencies: ["SGShared"]),
+            dependencies: ["SGShared", "CoreXLSX"]),
     ]
 )
